@@ -16,17 +16,14 @@ pipeline {
             }
         }
 
-        stage('Build on kubernetes'){
-        steps {
-            withKubeConfig([credentialsId: 'kubeconfig']) {
-                sh 'pwd'
-                sh 'cp -R helm/* .'
-                sh 'ls -ltrh'
-                sh 'pwd'
-                sh '/usr/local/bin/helm upgrade --install nodejs-app nodejs --set image.repository=omkarmule889/assignment: --set image.tag=${BUILD_NUMBER}'
+       stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    // Deploy to Kubernetes
+                    sh 'kubectl apply -f kubernetes/deployment.yaml'
+                }
             }
-        }
-       }    
+        } 
     }
     post {
         success {
