@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        PATH = "/path/to/kubectl:$PATH"
+        // Other environment variables
+    }
 
     stages {
         stage('Build') {
@@ -16,15 +20,16 @@ pipeline {
             }
         }
 
-       stage('Build on kubernetes'){
+        stage('Deploy to Kubernetes') {
             steps {
-                withKubeConfig([credentialsId: 'kubeconfig']) {
-                    
-                    // Deploy to Kubernetes
-                    sh 'kubectl apply -f kubernetes/deployment.yaml'
+                script {
+                    def kubeconfig = readFile(credentials('kubeconfig'))
+                    withKubeConfig([credentialsId: 'kubeconfig', kubeconfigText: kubeconfig]) {
+                        sh 'kubectl apply -f kubernetes/deployment.yaml'
+                    }
                 }
             }
-        } 
+        }
     }
     post {
         success {
