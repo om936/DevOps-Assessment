@@ -4,7 +4,7 @@ metadata:
   name: nodejs-ingress
 spec:
   rules:
-    - host: your-hostname.com
+    - host: 
       http:
         paths:
           - path: /server
