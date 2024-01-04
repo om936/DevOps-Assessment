@@ -20,7 +20,7 @@ pipeline {
         steps {
             withKubeConfig([credentialsId: 'kubeconfig']) {
                 sh 'pwd'
-                sh 'cp -R Helm/* .'
+                sh 'cp -R helm/* .'
                 sh 'ls -ltrh'
                 sh 'pwd'
                 sh '/usr/local/bin/helm upgrade --install nodejs-app nodejs --set image.repository=omkarmule889/assignment: --set image.tag=${BUILD_NUMBER}'
