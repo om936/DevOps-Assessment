@@ -1,0 +1,15 @@
+# values.yaml
+image:
+  repository: omkarmule889/assignment
+  tag: latest
+
+service:
+  name: nodejs-app
+  port: 8080
+
+ingress:
+  enabled: false
+  hosts:
+    - host: chart-example.local
+      paths:
+        - /
