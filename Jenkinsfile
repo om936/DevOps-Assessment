@@ -23,11 +23,9 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 script {
-                    def kubeconfig = readFile(credentials('kubeconfig'))
-                    withKubeConfig([credentialsId: 'kubeconfig', kubeconfigText: kubeconfig]) {
-                        sh 'kubectl apply -f kubernetes/deployment.yaml'
-                    }
-                }
+                     withKubeConfig([credentialsId: 'kubeconfig']) {
+                        sh "kubectl apply -f deployment.yaml -n $KUBE_NAMESPACE" 
+                       }
             }
         }
     }
