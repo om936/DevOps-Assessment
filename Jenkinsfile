@@ -24,10 +24,10 @@ pipeline {
                 sh 'ls -ltrh'
                 sh 'pwd'
                 sh '/usr/local/bin/helm upgrade --install nodejs-app nodejs --set image.repository=omkarmule889/assignment: --set image.tag=${BUILD_NUMBER}'
+            }
         }
+       }    
     }
-}
-
     post {
         success {
             echo 'Deployment successful!'
@@ -36,5 +36,4 @@ pipeline {
             echo 'Deployment failed!'
         }
     }
-}
 }
