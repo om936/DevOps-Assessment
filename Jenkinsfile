@@ -25,6 +25,8 @@ pipeline {
                 script {
                      withKubeConfig([credentialsId: 'kubeconfig']) {
                         sh "kubectl apply -f deployment.yaml" 
+                        sh "kubectl apply -f ingress.yaml" 
+                        
                        }
                     }
             }
