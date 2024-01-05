@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                      withKubeConfig([credentialsId: 'kubeconfig']) {
-                        sed -i "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/" deploy.yaml
+                        sh "sed -i "s/{{BUILD_NUMBER}}/$BUILD_NUMBER/" deploy.yaml"
                         sh "kubectl apply -f deployment.yaml" 
                         sh "kubectl apply -f ingress.yaml" 
                         
