@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nodejs-app
-          image: omkarmule889/assignment:45
+          image: omkarmule889/assignment:51
           ports:
             - containerPort: 3000
 ---
