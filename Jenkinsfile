@@ -1,9 +1,6 @@
 pipeline {
     agent any
-    environment {
-        PATH = "/path/to/kubectl:$PATH"
-        // Other environment variables
-    }
+    
 
     stages {
         stage('Build') {
