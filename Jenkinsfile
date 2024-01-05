@@ -14,7 +14,7 @@ pipeline {
                         def imageName = 'omkarmule889/assignment'
                         def imageTag = "${env.BUILD_NUMBER}"
                         docker.build(imageName, "-t ${imageName}:${imageTag} .")
-                        docker.image(imageName).push("latest")
+                        docker.image(imageName).push("${imageTag}")
                     }
                 }
             }
